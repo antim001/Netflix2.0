@@ -8,19 +8,19 @@ const Home = () => {
         <div>
             <Navbar></Navbar>
            <Main></Main> 
-           <Row
+           <Row rowId='1'
            title='Up Coming' fetchURL={requests.requestUpcoming}
            ></Row>
-           <Row
+           <Row rowId='2'
            title='Popular' fetchURL={requests.requestPopular}
            ></Row>
-           <Row
+           <Row rowId='3'
            title='Trending' fetchURL={requests.requestTrending}
            ></Row>
-           <Row
+           <Row rowId='4'
            title='Top Rated' fetchURL={requests.requestTopRated}
            ></Row>
-           <Row
+           <Row rowId='5'
            title='Horror' fetchURL={requests.requestHorror}
            ></Row>
         </div>
