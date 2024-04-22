@@ -10,7 +10,7 @@ const Movie = ({ item, onShowTrailer }) => {
         setLike(!like);
     
         // Send POST request to save liked movie to database
-        fetch("http://localhost:5000/movielist", {
+        fetch("https://netflix-server-alpha.vercel.app/movielist", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
