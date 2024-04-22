@@ -35,7 +35,7 @@ const Movie = ({ item, onShowTrailer }) => {
                 <p className='white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center'>{item?.title}</p>
                 <p>
                     {like 
-                        ? <FaHeart className='absolute top-4 left-4 text-gray-300' onClick={(e) => { e.stopPropagation(); handleLike(); }} /> 
+                        ? <FaHeart  className='absolute top-4 left-4 text-gray-300' onClick={(e) => { e.stopPropagation(); handleLike(); }} /> 
                         : <FaRegHeart className='absolute top-4 left-4 text-gray-300' onClick={(e) => { e.stopPropagation(); handleLike(); }} />}
                 </p>
             </div>
