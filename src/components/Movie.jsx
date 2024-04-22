@@ -1,14 +1,37 @@
 import { useState } from 'react';
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import movieTrailer from 'movie-trailer';
+import { toast } from 'react-hot-toast';
 
 const Movie = ({ item, onShowTrailer }) => {
     const [like, setLike] = useState(false);
 
     const handleLike = () => {
         setLike(!like);
+    
+        // Send POST request to save liked movie to database
+        fetch("http://localhost:5000/movielist", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                movieId: item.id, // Assuming item.id is the movie ID
+                title: item.title,
+                backdrop_path: item.backdrop_path,
+                // Add other movie details as needed
+            }),
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            toast.success('Movie added Successfully')
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error("Error liking movie:", error);
+        });
     };
-
+    
     const handleClick = (movieName) => {
         movieTrailer(movieName || "")
             .then((url) => {

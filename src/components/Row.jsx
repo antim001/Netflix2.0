@@ -4,6 +4,7 @@ import Movie from './Movie';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
+import { IoMdClose } from "react-icons/io";
 
 const Row = ({ title, fetchURL, rowId }) => {
     const [movies, setMovies] = useState([]);
@@ -75,7 +76,7 @@ const Row = ({ title, fetchURL, rowId }) => {
                 <div className="absolute  md:left-10 w-full h-full z-50">
                     <div className="relative w-full h-full">
                         <YouTube videoId={trailerUrl} opts={opts} className="absolute" style={{ left: videoPos.x, top: videoPos.y }} ref={videoRef} onEnd={handleOnEnd} />
-                        <button onClick={handleCloseTrailer} className="absolute top-4 right-4 bg-red-700 text-white px-4 py-2 rounded">Close Trailer</button>
+                        <button onClick={handleCloseTrailer} className="absolute top-4  bg-red-700 text-white px-4 py-2 rounded"><IoMdClose/></button>
                     </div>
                 </div>
             )}
