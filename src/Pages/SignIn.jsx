@@ -1,6 +1,33 @@
-import {Link} from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { AuthContext } from './../provider/AuthProvider';
+import {useContext} from 'react'
 const SignIn = () => {
+  const {signIn}=useContext(AuthContext);
+  const navigate=useNavigate()
+  const handleSignIn=(e)=>{
+    e.preventDefault()
+    const form=e.target;
+    const email=form.email.value;
+    const password=form.password.value;
+    signIn(email,password)
+    .then(res => {
+      // Display success message using toast.success()
+      toast.success('Login successful!');
+      navigate('/mylist')
+      console.log(res);
+  })
+  .catch(error => {
+      // Display Firebase error message using toast.error()
+      if (error.code === 'auth/invalid-credential') {
+          toast.error('Invalid credentials. Please check your email and password.');
+      } else {
+          toast.error(error.message);
+      }
+      console.log(error);  // Optionally log the error
+  });
+
+  }
     return (
         <>
         <div className='w-full h-screen'>
@@ -14,7 +41,7 @@ const SignIn = () => {
             <div className='max-w-[450px] h-[600px] mx-auto bg-black/75 text-white'>
               <div className='max-w-[320px] mx-auto py-16'>
                 <h1 className='text-3xl font-bold'>Sign In</h1>
-                <form
+                <form onSubmit={handleSignIn}
                
                   className='w-full flex flex-col py-4'
                 >
@@ -24,6 +51,7 @@ const SignIn = () => {
                     type='email'
                     placeholder='Email'
                     autoComplete='email'
+                    name='email'
                   />
                   <input
                  
@@ -31,9 +59,10 @@ const SignIn = () => {
                     type='password'
                     placeholder='Password'
                     autoComplete='current-password'
+                    name='password'
                   />
                   <button className='bg-red-600 py-3 my-6 rounded font-bold'>
-                    Sign Up
+                    Sign In
                   </button>
                   <div className='flex justify-between items-center text-sm text-gray-600'>
                     <p>

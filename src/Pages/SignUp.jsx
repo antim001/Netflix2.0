@@ -1,7 +1,45 @@
-import { Link } from 'react-router-dom';
+
+import {useContext} from 'react';
+import { Link,useNavigate } from 'react-router-dom';
+
+import { toast } from 'react-hot-toast';
+import { AuthContext } from './../provider/AuthProvider';
 
 const SignUp = () => {
- return (
+
+  const {createUser}=useContext(AuthContext);
+  const navigate=useNavigate()
+  const handleRegister=(e)=>{
+ e.preventDefault()
+   const form=e.target;
+   const email=form.email.value;
+   const password=form.password.value;
+ 
+   
+   //validation
+   if(password.length<6){
+     toast.error("password must be 6 characters")
+     return;
+   }
+   createUser(email,password)
+   .then(res => {
+     // Display success message using toast.success()
+     toast.success('registration  successful!');
+     navigate('/mylist')
+     console.log(res);
+ })
+   .catch(error => {
+     // Display Firebase error message using toast.error()
+     if (error.code === 'auth/email-already-in-use') {
+       toast.error('Email is already in use');
+     } else {
+       toast.error(error.message);
+     }
+     console.log(error);  // Optionally log the error
+   });
+   
+  }
+  return (
     <>
       <div className='w-full h-screen'>
         <img
@@ -14,7 +52,7 @@ const SignUp = () => {
           <div className='max-w-[450px] h-[600px] mx-auto bg-black/75 text-white'>
             <div className='max-w-[320px] mx-auto py-16'>
               <h1 className='text-3xl font-bold'>Sign Up</h1>
-              <form
+              <form onSubmit={handleRegister}
              
                 className='w-full flex flex-col py-4'
               >
@@ -24,6 +62,7 @@ const SignUp = () => {
                   type='email'
                   placeholder='Email'
                   autoComplete='email'
+                  name='email'
                 />
                 <input
                
@@ -31,8 +70,9 @@ const SignUp = () => {
                   type='password'
                   placeholder='Password'
                   autoComplete='current-password'
+                  name='password'
                 />
-                <button className='bg-red-600 py-3 my-6 rounded font-bold'>
+                <button type='submit' className='bg-red-600 py-3 my-6 rounded font-bold'>
                   Sign Up
                 </button>
                 <div className='flex justify-between items-center text-sm text-gray-600'>

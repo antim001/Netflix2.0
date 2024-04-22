@@ -4,6 +4,7 @@ import SignIn from './../Pages/SignIn';
 import Layout from './../Layout/Layout';
 import SignUp from '../Pages/SignUp'
 import MyList from './../Pages/MyList';
+import PrivateRoute from './../provider/PrivateRoute';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/mylist',
-        element:<MyList></MyList>
+        element:<PrivateRoute><MyList></MyList></PrivateRoute>
       }
     ]
   }
