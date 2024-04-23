@@ -15,7 +15,7 @@ Dive into the world of entertainment with our Netflix-inspired platform built wi
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/antim001)
+- [@AntimSarker](https://www.github.com/antim001)
 
 
 
