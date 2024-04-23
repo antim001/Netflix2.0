@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       {
         path:'/mylist',
         element:<PrivateRoute><MyList></MyList></PrivateRoute>,
-        loader:()=>fetch(`https://netflix-server-alpha.vercel.app/movielist`)
+        loader:()=>fetch(`https://netflix-server-mu.vercel.app/movielist`)
       }
     ]
   }

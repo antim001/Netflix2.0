@@ -8,6 +8,7 @@ import { IoMdClose } from 'react-icons/io';
 
 const MyList = () => {
     const movieList = useLoaderData();
+  
 
     const handleDelete = (_id) => {
         Swal.fire({
@@ -20,7 +21,7 @@ const MyList = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://netflix-server-alpha.vercel.app/movielist/${_id}`, {
+                fetch(`https://netflix-server-mu.vercel.app/movielist/${_id}`, {
                     method: 'DELETE'
                 })
                 .then(res => res.json())
@@ -55,7 +56,9 @@ const MyList = () => {
         <>
             <div className='w-full mt-20'>
                 <h2 className='text-white text-center sm:text-xl lg:text-5xl'>Movies:{movieList.length}</h2>
-                <div className='flex gap-2'>
+                <div className='grid sm:grid-cols-2 lg:grid-cols-3
+                
+                 '>
                     {
                         movieList.map(item => (
                             <div key={item._id}>
